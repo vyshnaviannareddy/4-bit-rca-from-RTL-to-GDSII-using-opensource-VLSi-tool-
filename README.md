@@ -65,11 +65,12 @@ The behavioral logic of the 4-bit adder was validated using a comprehensive test
   <img src="rca%20ss/waveforms.png" width="90%" alt="GTKWave Verification Waveforms">
 </p>
 
-### 2️⃣ Logic Synthesis (Yosys)
-The Verilog source description is mapped into structural gates using 20 standard cells from the `sky130_fd_sc_hd` library (including `xnor2`, `nand2`, `nor2`, `or2`, `a21bo`, and `and2` gates) to optimize total module area (`183.926 μm²`).
+### 2️⃣ Logic Synthesis & Power Reports
+The Verilog source description is mapped into structural gates using 20 standard cells from the `sky130_fd_sc_hd` library (including `xnor2`, `nand2`, `nor2`, `or2`, `a21bo`, and `and2` gates). The resulting module area is `183.926 μm²` with a total power draw of `14.5 µW`.
 
 <p align="center">
-  <img src="rca%20ss/area.png" width="70%" alt="Synthesis Area and Cell Report">
+  <img src="rca%20ss/area.png" width="48%" alt="Synthesis Area and Cell Report">
+  <img src="rca%20ss/power.png" width="48%" alt="Power Consumption Summary">
 </p>
 
 ### 3️⃣ Floorplanning & Power Delivery Network (PDN)
@@ -99,12 +100,11 @@ Signal interconnects are routed across multi-layer metal grids (`met1`–`met5`)
   <img src="rca%20ss/routing.png" width="80%" alt="Routed Netlist OpenROAD View">
 </p>
 
-### 6️⃣ Physical Signoff & Power Analysis
-The finished layout was exported for signoff verification. Power analysis indicates a lean total consumption of `14.5 µW`. Magic DRC confirms **0 violations**, Netgen LVS confirms a clean **45-net match**, and antenna checks pass clean with **0 violations**.
+### 6️⃣ Physical Signoff & Verification (DRC/LVS)
+The finished layout was exported for signoff verification. Magic DRC confirms **0 violations**, Netgen LVS confirms a clean **45-net match**, and antenna checks pass clean with **0 violations**.
 
 <p align="center">
-  <img src="rca%20ss/power.png" width="48%" alt="Power Consumption Summary">
-  <img src="rca%20ss/drc.png" width="48%" alt="DRC, LVS, and Antenna Signoff Summary">
+  <img src="rca%20ss/drc.png" width="85%" alt="DRC, LVS, and Antenna Signoff Summary">
 </p>
 
 ---
