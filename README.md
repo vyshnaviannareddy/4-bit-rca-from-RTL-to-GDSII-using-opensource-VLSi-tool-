@@ -126,7 +126,7 @@ The finished layout was exported for signoff verification. Magic DRC confirms **
 ├── config.json             # OpenLane floorplan constraints and design configurations
 ├── rca.gds                 # Exported binary stream file for fabrication
 └── README.md               # Project documentation
-
+```
 ## 🚀 How to Reproduce
 
 Rebuild this physical layout blueprint on your local environment:
