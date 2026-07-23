@@ -1,0 +1,10 @@
+{
+    "DESIGN_NAME": "rca",
+    "VERILOG_FILES": "dir::src/rca.v",
+    "CLOCK_PERIOD": 10.0,
+    "CLOCK_PORT": "clk", 
+    "FP_SIZING": "absolute",
+    "DIE_AREA": "0 0 100 100",
+    "PL_TARGET_DENSITY": 0.55,
+    "DIODE_INSERTION_STRATEGY": 3
+}
