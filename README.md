@@ -44,12 +44,12 @@ This project drives a behavioral Verilog model of a 4-bit RCA completely through
 
 ## 📊 Summary Results & Design Metrics
 
-* **Module Chip Area:** `183.926 μm²`
+* **Module Chip Area:** 183.926 μm²
 * **Total Standard Cells:** 20 instances (`sky130_fd_sc_hd` high-density library)
-* **Total Power Consumption:** `14.5 µW` ($1.45 \times 10^{-5}\text{ W}$)
-  * **Internal Power:** `5.20 µW` (35.9%)
-  * **Switching Power:** `9.28 µW` (64.1%)
-  * **Leakage Power:** `7.71 pW` (~0.0%)
+* **Total Power Consumption:** 14.5 µW
+  * **Internal Power:** 5.20 µW (35.9%)
+  * **Switching Power:** 9.28 µW (64.1%)
+  * **Leakage Power:** 7.71 pW (~0.0%)
 * **Physical Verification:** **0 DRC Violations** | **LVS Clean (45 Nets matched)** | **0 Antenna Violations**
 
 ---
@@ -66,7 +66,7 @@ The behavioral logic of the 4-bit adder was validated using a comprehensive test
 </p>
 
 ### 2️⃣ Logic Synthesis & Power Reports
-The Verilog source description is mapped into structural gates using 20 standard cells from the `sky130_fd_sc_hd` library (including `xnor2`, `nand2`, `nor2`, `or2`, `a21bo`, and `and2` gates). The resulting module area is `183.926 μm²` with a total power draw of `14.5 µW`.
+The Verilog source description is mapped into structural gates using 20 standard cells from the `sky130_fd_sc_hd` library (including `xnor2`, `nand2`, `nor2`, `or2`, `a21bo`, and `and2` gates). The resulting module area is 183.926 μm² with a total power draw of 14.5 µW.
 
 <p align="center">
   <img src="rca%20ss/area.png" width="48%" alt="Synthesis Area and Cell Report">
@@ -126,3 +126,47 @@ The finished layout was exported for signoff verification. Magic DRC confirms **
 ├── config.json             # OpenLane floorplan constraints and design configurations
 ├── rca.gds                 # Exported binary stream file for fabrication
 └── README.md               # Project documentation
+
+## 🚀 How to Reproduce
+
+Rebuild this physical layout blueprint on your local environment:
+
+### Prerequisites:
+* Linux OS (Ubuntu environment recommended)
+* Docker engine installed and configured
+* OpenLane workspace clone with configured Sky130 PDK
+
+---
+
+### Step 1: Execute Functional Verification
+
+Verify the behavioral netlist prior to logic translation:
+
+# Compile design and testbench modules
+```
+iverilog -o tb_rca src/rca.v src/tb_rca.v
+```
+# Execute simulation runtime to output VCD dump
+```
+vvp tb_rca
+```
+# Open wave structures visually
+```
+gtkwave rca.vcd
+```
+### Step 2: Run the Physical Design Pipeline
+
+Move this design directory inside your native OpenLane installation route under `<OpenLane_Root>/designs/`.
+
+# 1. Mount the interactive OpenLane environment container
+```
+make mount
+```
+
+# 2. Run the automated layout generation script
+```
+./flow.tcl -design rca
+```
+## 🤝 Acknowledgments
+1. Google / SkyWater Foundation:** For lowering the barrier of entry by open-sourcing the 130nm PDK.
+2. The OpenROAD Project:** For developing robust, fully automated EDA placement, routing, and physical abstraction engines
