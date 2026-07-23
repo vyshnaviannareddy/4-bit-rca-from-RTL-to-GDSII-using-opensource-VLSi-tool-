@@ -144,11 +144,11 @@ Verify the behavioral netlist prior to logic translation:
 
 # Compile design and testbench modules
 ```
-iverilog -o tb_rca src/rca.v src/tb_rca.v
+iverilog -o rca.vvp src/rca.v src/rcatb.v
 ```
 # Execute simulation runtime to output VCD dump
 ```
-vvp tb_rca
+vvp rca.vvp
 ```
 # Open wave structures visually
 ```
